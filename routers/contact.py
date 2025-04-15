@@ -8,6 +8,7 @@ router = APIRouter()
 
 @router.get("/contacts", response_model=list[contact_schema.Contact])  # 一覧表示
 async def get_contact_all():
+    # pass
     # 試しにデータを登録
     dummy_date = datetime.now()
     return [
@@ -24,21 +25,25 @@ async def get_contact_all():
     ]
 
 
-@router.post("/contacts", response_model=contact_schema.Contact)  # 保存
+# 保存
+@router.post("/contacts", response_model=contact_schema.Contact)
 async def create_contact(body: contact_schema.Contact):
     return contact_schema.Contact(**body.model_dump())
 
 
-@router.get("/contacts/{id}")  # 詳細表示
-async def get_contact():
-    pass
+# 詳細表示
+@router.get("/contacts/{id}", response_model=contact_schema.Contact)
+async def get_contact(id: int):
+    return contact_schema.Contact(id)
 
 
-@router.put("/contacts/{id}")  # 更新
-async def update_contact():
-    pass
+# 更新
+@router.put("/contacts/{id}", response_model=contact_schema.Contact)
+async def update_contact(id: int, body: contact_schema.Contact):
+    return contact_schema.Contact(**body.model_dump())
 
 
-@router.delete("/contacts/{id}")  # 削除
-async def delete_contact():
-    pass
+# 削除
+@router.delete("/contacts/{id}", response_model=contact_schema.Contact)
+async def delete_contact(id: int):
+    return

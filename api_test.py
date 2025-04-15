@@ -18,7 +18,7 @@ def main():
     }
 
     # 辞書型 -> JSON形式に変換してPOST通信
-    res = requests.get(url, json.dumps(body))
+    res = requests.post(url, json.dumps(body))
     print(res.json())
 
 
