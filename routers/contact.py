@@ -26,6 +26,7 @@ async def get_contact_all():
 
 
 # 保存
+# 第二引数にモデルを設定
 @router.post("/contacts", response_model=contact_schema.Contact)
 async def create_contact(body: contact_schema.Contact):
     return contact_schema.Contact(**body.model_dump())
